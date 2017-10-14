@@ -62,6 +62,7 @@ CREATE TABLE postings (
 	price			INTEGER NOT NULL,
 	seller			INTEGER NOT NULL,
 	status			ENUM('hidden', 'posted', 'sold') NOT NULL,
+	title			VARCHAR(80) NOT NULL,
 	zipcode			MEDIUMINT NOT NULL,
 	FOREIGN KEY (book)	REFERENCES books (id),
 	FOREIGN KEY (seller)	REFERENCES users (id),
