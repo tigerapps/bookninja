@@ -1,4 +1,31 @@
 {% extends "layout.html" %}
 {% block body %}
-<!-- Your HTML here -->
+<div class="row">
+    <div class="col-sm-9">
+        <label id="lbTitle"></label>
+        <label id="lbPrice"></label>
+    </div>
+    <div class="col-sm-3">
+        <button class="danger">Message Seller</button>
+    </div>
+</div>
+<div class="row">
+    <div id="divImage" class="col-sm-7">
+        <img class="listing-image" id="imgListing" src="{{ url_for('static', filename='images/no_img.png') }}" />
+    </div>
+    <div class="col-md-5">
+        <label class="item_description"> Book Title </label>
+        <label class="item_description"> ISBN </label>
+        <label class="item_description"> Author </label>
+        <label class="item_description"> Edition </label>
+        <label class="item_description"> Condition </label>
+        <label class="item_description"> Cover Type </label>
+        <label class="item_description"> School </label>
+        <label class="item_description"> Class </label>
+        <label class="item_description"> Zipcode  </label>
+    </div>
+</div>
+<div class="row">
+    <div id="divDescription" class="col-sm-12"></div>
+</div>
 {% endblock %}
