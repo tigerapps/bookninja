@@ -3,8 +3,8 @@ USE bookninja;
 SET foreign_key_checks = 0;
 
 DROP TABLE IF EXISTS
-	authors, books, classes, messages, pictures, postings, semesters,
-	schools, users, author_book, book_class, picture_posting;
+	authors, books, courses, messages, pictures, postings, semesters,
+	schools, users, author_book, book_course, picture_posting;
 
 CREATE TABLE authors (
 	id			INTEGER NOT NULL AUTO_INCREMENT,
@@ -21,8 +21,10 @@ CREATE TABLE books (
 	PRIMARY KEY (id)
 );
 
-CREATE TABLE classes (
+CREATE TABLE courses (
 	id			INTEGER NOT NULL AUTO_INCREMENT,
+	course_number		VARCHAR(12) NOT NULL,
+	name			VARCHAR(80) NOT NULL,
 	school			INTEGER NOT NULL,
 	FOREIGN KEY (school)	REFERENCES schools (id),
 	PRIMARY KEY (id)
@@ -96,14 +98,14 @@ CREATE TABLE author_book (
 	PRIMARY KEY (author, book)
 );
 
-CREATE TABLE book_class (
+CREATE TABLE book_course (
 	book			INTEGER NOT NULL,
-	class			INTEGER NOT NULL,
+	course			INTEGER NOT NULL,
 	semester		INTEGER NOT NULL,
 	FOREIGN KEY (book)	REFERENCES books (id),
-	FOREIGN KEY (class)	REFERENCES classes (id),
+	FOREIGN KEY (course)	REFERENCES courses (id),
 	FOREIGN KEY (semester)	REFERENCES semesters (id),
-	PRIMARY KEY (book, class, semester)
+	PRIMARY KEY (book, course, semester)
 );
 
 CREATE TABLE picture_posting (
