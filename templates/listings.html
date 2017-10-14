@@ -1,12 +1,94 @@
 {% extends "layout.html" %}
 {% block body %}
 <div class="row">
-    <div id="divFilterBar" class="col-sm-3">
-
-    </div>
-    <div id="divListing" class="col-sm-9">
-
-    </div>
+  <div class="col-sm-3" id="divFilterBar">
+    <div class="row">
+      <div id="filterPrice">
+        <div class="col-sm-4 filterLabel">
+          Price
+        </div>
+        <div class="col-sm-4">
+          <input type="number" class="form-control" id="tbMinPrice" placeholder="min">
+        </div>
+        <div class="col-sm-4">
+          <input type="number" class="form-control" id="tbMaxPrice" placeholder="max">
+        </div>
+      </div>
+    </div> <!-- End filterPrice -->
+    <div class="row">
+      <div id="filterSchool">
+        <div class="col-sm-4 filterLabel">
+          School
+        </div>
+        <div class="col-sm-8">
+          <select id="selSchool">
+            <option></option>
+            {%- if filterOptions is defined %}
+              {{ filterOptions.schools }}
+            {% endif %}
+          </select>
+        </div>
+      </div>
+    </div> <!-- End of filterSchool -->
+    <div class="row">
+      <div id="filterAuthor">
+        <div class="col-sm-4 filterLabel">
+          Author
+        </div>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" id="tbAuthor" placeholder="Author">
+        </div>
+      </div>
+    </div> <!-- End of filterAuthor -->
+    <div class="row">
+      <div id="filterCondition">
+        <div class="col-sm-4 filterLabel">
+          Condition
+        </div>
+        <div class="col-sm-8">
+          <select id="selCondition">
+            <option></option>
+            <option>New</option>
+            <option>Like New</option>
+            <option>Good</option>
+            <option>Fair</option>
+            <option>Poor</option>
+          </select>
+        </div>
+      </div>
+    </div> <!-- End of filterCondition -->
+    <div class="row">
+      <div id="filterCoverType">
+        <div class="col-sm-4 filterLabel">
+          Cover Type
+        </div>
+        <div class="col-sm-8">
+          <select id="selCoverType">
+            <option></option>
+            <option>Hard Cover</option>
+            <option>Soft Cover</option>
+            <option>Loose Leaf</option>
+          </select>
+        </div>
+      </div>
+    </div> <!-- End of filterCoverType -->
+    <!-- Zip Code: TODO -->
+    <!-- Edition: TODO -->
+    <!-- Semester: TODO -->
+    <div class="row">
+      <div id="filterImage">
+        <div class="col-sm-4 filterLabel">
+          Has Image:
+        </div>
+        <div class="col-sm-3">
+          <input type="checkbox" id="chkbxImage">
+        </div>
+      </div>
+    </div> <!-- End of filterImage -->
+  </div>
+  <div id="divListing" class="col-sm-9">
+    foobar
+  </div>
 </div>
 {% endblock %}
 {% block script %}
