@@ -8,11 +8,21 @@
     <meta name="author" content="" />
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Title</title>
+    <title>BookNinja</title>
   </head>
   <body>
     <div class="container">
       <nav class="navbar navbar-default">
+        <a class="navbar-brand" href="{{ url_for('.homepage') }}" id="header-logo-container">
+          <img class="header-logo" id="header-logo" src="{{ url_for('static', filename='images/logo.png') }}" />
+        </a>
+        <div class="navbar-right">
+          {%- if user is defined %}
+            Hello, {{ user.name }}
+          {%- else %}
+            Login
+          {%- endif %}
+        </div>
       </nav>
       {% block body %}{% endblock %}
     </div>

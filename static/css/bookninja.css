@@ -1,3 +1,12 @@
 body {
   margin-top: 1em;
 }
+
+#header-logo {
+  max-height: 50px;
+  width: auto;
+}
+
+#header-logo-container {
+  padding: 5px 5px;
+}
