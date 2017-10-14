@@ -10,3 +10,10 @@ body {
 #header-logo-container {
   padding: 5px 5px;
 }
+
+#header-user {
+  padding: 20px 30px;
+  font-size: 18px;
+  line-height: 20px;
+  height: 60px;
+}
