@@ -1,0 +1,29 @@
+body {
+  margin-top: 1em;
+}
+
+#header-logo {
+  max-height: 50px;
+  width: auto;
+}
+
+#header-logo-container {
+  padding: 5px 5px;
+}
+
+#header-searchbar {
+  padding: 11px 20px;
+  width: 30%;
+}
+
+#header-searchbutton {
+  padding: 11px 0px;
+  height: 38px;
+}
+
+#header-user {
+  padding: 20px 30px;
+  font-size: 18px;
+  line-height: 20px;
+  height: 60px;
+}
