@@ -6,8 +6,9 @@ python:
 notifications:
   email: false
 
-before_install:
-  - flake8
-
 install:
   - pip install -r requirements.txt
+  - pip install -r test-requirements.txt
+
+script:
+  - flake8
