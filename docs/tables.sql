@@ -35,7 +35,7 @@ CREATE TABLE messages (
 	posting			INTEGER NOT NULL,
 	receiver		INTEGER NOT NULL,
 	sender			INTEGER NOT NULL,
-	FOREIGN KEY (posting)	REFERENCES postings (id),
+	FOREIGN KEY (posting)	REFERENCES postings (id) ON DELETE CASCADE,
 	FOREIGN KEY (receiver)	REFERENCES users (id),
 	FOREIGN KEY (sender)	REFERENCES users (id),
 	PRIMARY KEY (id)
@@ -109,7 +109,7 @@ CREATE TABLE book_class (
 CREATE TABLE picture_posting (
 	picture			INTEGER NOT NULL,
 	posting			INTEGER NOT NULL,
-	FOREIGN KEY (picture)	REFERENCES pictures (id),
+	FOREIGN KEY (picture)	REFERENCES pictures (id) ON DELETE CASCADE,
 	FOREIGN KEY (posting)	REFERENCES postings (id),
 	PRIMARY KEY (picture, posting)
 );
