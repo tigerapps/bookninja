@@ -35,9 +35,11 @@ CREATE TABLE messages (
 	created			TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	message			TEXT NOT NULL,
 	posting			INTEGER NOT NULL,
+	previous		INTEGER,
 	receiver		INTEGER NOT NULL,
 	sender			INTEGER NOT NULL,
 	FOREIGN KEY (posting)	REFERENCES postings (id) ON DELETE CASCADE,
+	FOREIGN KEY (previous)	REFERENCES messages (id) ON DELETE CASCADE,
 	FOREIGN KEY (receiver)	REFERENCES users (id),
 	FOREIGN KEY (sender)	REFERENCES users (id),
 	PRIMARY KEY (id)
@@ -56,6 +58,7 @@ CREATE TABLE postings (
 	book_condition		ENUM('new', 'likenew', 'good', 'fair', 'poor') NOT NULL,
 	created			TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	description		TEXT,
+	modified		TIMESTAMP,
 	price			INTEGER NOT NULL,
 	seller			INTEGER NOT NULL,
 	status			ENUM('hidden', 'posted', 'sold') NOT NULL,
@@ -82,11 +85,14 @@ CREATE TABLE schools (
 
 CREATE TABLE users (
 	id			INTEGER NOT NULL AUTO_INCREMENT,
+	created			TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	email			VARCHAR(254) NOT NULL,
 	name			VARCHAR(80),
 	password		BINARY(60) NOT NULL,
+	school			INTEGER,
 	username		VARCHAR(40) NOT NULL UNIQUE,
 	zipcode			MEDIUMINT,
+	FOREIGN KEY (school)	REFERENCES schools (id) ON DELETE SET NULL,
 	PRIMARY KEY (id)
 );
 
