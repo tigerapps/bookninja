@@ -9,3 +9,31 @@
     </div>
 </div>
 {% endblock %}
+{% block script %}
+<script>
+    window.onload = function() {
+        Init();
+    };
+
+    function Init(){
+        var json = getJSON('/api/v1/listings')
+        var html ='';
+        for (i in json){
+            html += AddListing(json[i].img, json[i].price, json[i].title, json[i].posting_id)
+        }
+        $('#divListing').html();
+    }
+
+    function AddListing (img, price, title, posting_id){
+        var html ='';
+        html += '<div class=row>'
+        html +=    '<div class=col-sm-12>'
+        //html += add pic
+        //html += add price
+        //html += add title
+        html +=    '</div>'
+        html += '</div>'
+        return html;
+    }
+</script>
+{% endblock %}
