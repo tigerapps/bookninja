@@ -3,8 +3,8 @@ USE bookninja;
 SET foreign_key_checks = 0;
 
 DROP TABLE IF EXISTS
-	authors, books, courses, messages, pictures, postings, semesters,
-	schools, users, author_book, book_course, picture_posting;
+	authors, books, courses, listings, messages, pictures, semesters,
+	schools, users, author_book, book_course, listing_picture;
 
 CREATE TABLE authors (
 	id			INTEGER NOT NULL AUTO_INCREMENT,
@@ -33,12 +33,12 @@ CREATE TABLE courses (
 CREATE TABLE messages (
 	id			INTEGER NOT NULL AUTO_INCREMENT,
 	created			TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+	listing			INTEGER NOT NULL,
 	message			TEXT NOT NULL,
-	posting			INTEGER NOT NULL,
 	previous		INTEGER,
 	receiver		INTEGER NOT NULL,
 	sender			INTEGER NOT NULL,
-	FOREIGN KEY (posting)	REFERENCES postings (id) ON DELETE CASCADE,
+	FOREIGN KEY (listing)	REFERENCES listings (id) ON DELETE CASCADE,
 	FOREIGN KEY (previous)	REFERENCES messages (id) ON DELETE CASCADE,
 	FOREIGN KEY (receiver)	REFERENCES users (id),
 	FOREIGN KEY (sender)	REFERENCES users (id),
@@ -52,7 +52,7 @@ CREATE TABLE pictures (
 	PRIMARY KEY (id)
 );
 
-CREATE TABLE postings (
+CREATE TABLE listings (
 	id			INTEGER NOT NULL AUTO_INCREMENT,
 	book			INTEGER NOT NULL,
 	book_condition		ENUM('new', 'likenew', 'good', 'fair', 'poor') NOT NULL,
@@ -115,12 +115,12 @@ CREATE TABLE book_course (
 	PRIMARY KEY (book, course, semester)
 );
 
-CREATE TABLE picture_posting (
+CREATE TABLE listing_picture (
 	picture			INTEGER NOT NULL,
-	posting			INTEGER NOT NULL,
+	listing			INTEGER NOT NULL,
+	FOREIGN KEY (listing)	REFERENCES listings (id),
 	FOREIGN KEY (picture)	REFERENCES pictures (id) ON DELETE CASCADE,
-	FOREIGN KEY (posting)	REFERENCES postings (id),
-	PRIMARY KEY (picture, posting)
+	PRIMARY KEY (picture, listing)
 );
 
 SET foreign_key_checks = 1;
