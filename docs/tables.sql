@@ -7,13 +7,13 @@ DROP TABLE IF EXISTS
 	schools, users, author_book, book_class, picture_posting;
 
 CREATE TABLE authors (
-	id			INTEGER AUTO_INCREMENT,
+	id			INTEGER NOT NULL AUTO_INCREMENT,
 	name			VARCHAR(80) NOT NULL UNIQUE,
 	PRIMARY KEY (id)
 );
 
 CREATE TABLE books (
-	id			INTEGER AUTO_INCREMENT,
+	id			INTEGER NOT NULL AUTO_INCREMENT,
 	covertype		ENUM('hard', 'loose', 'soft') NOT NULL,
 	edition			VARCHAR(16),
 	isbn			BIGINT NOT NULL UNIQUE,
@@ -22,14 +22,14 @@ CREATE TABLE books (
 );
 
 CREATE TABLE classes (
-	id			INTEGER AUTO_INCREMENT,
+	id			INTEGER NOT NULL AUTO_INCREMENT,
 	school			INTEGER NOT NULL,
 	FOREIGN KEY (school)	REFERENCES schools (id),
 	PRIMARY KEY (id)
 );
 
 CREATE TABLE messages (
-	id			INTEGER AUTO_INCREMENT,
+	id			INTEGER NOT NULL AUTO_INCREMENT,
 	created			TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	message			TEXT NOT NULL,
 	posting			INTEGER NOT NULL,
@@ -42,14 +42,14 @@ CREATE TABLE messages (
 );
 
 CREATE TABLE pictures (
-	id			INTEGER AUTO_INCREMENT,
+	id			INTEGER NOT NULL AUTO_INCREMENT,
 	format			ENUM('jpeg', 'png', 'webp') NOT NULL,
 	hash			BINARY(32) NOT NULL UNIQUE,
 	PRIMARY KEY (id)
 );
 
 CREATE TABLE postings (
-	id			INTEGER AUTO_INCREMENT,
+	id			INTEGER NOT NULL AUTO_INCREMENT,
 	book			INTEGER NOT NULL,
 	book_condition		ENUM('new', 'likenew', 'good', 'fair', 'poor') NOT NULL,
 	created			TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
@@ -64,7 +64,7 @@ CREATE TABLE postings (
 );
 
 CREATE TABLE semesters (
-	id			INTEGER AUTO_INCREMENT,
+	id			INTEGER NOT NULL AUTO_INCREMENT,
 	term			ENUM('winter', 'spring', 'summer', 'fall') NOT NULL,
 	year			YEAR NOT NULL,
 	PRIMARY KEY (id),
@@ -72,14 +72,14 @@ CREATE TABLE semesters (
 );
 
 CREATE TABLE schools (
-	id			INTEGER AUTO_INCREMENT,
+	id			INTEGER NOT NULL AUTO_INCREMENT,
 	name			VARCHAR(100) NOT NULL UNIQUE,
 	zipcode			MEDIUMINT NOT NULL,
 	PRIMARY KEY (id)
 );
 
 CREATE TABLE users (
-	id			INTEGER AUTO_INCREMENT,
+	id			INTEGER NOT NULL AUTO_INCREMENT,
 	email			VARCHAR(254) NOT NULL,
 	name			VARCHAR(80),
 	password		BINARY(60) NOT NULL,
