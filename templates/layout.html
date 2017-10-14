@@ -13,21 +13,44 @@
   <body>
     <div class="container-fluid">
       <nav class="navbar navbar-default">
-        <a class="navbar-brand" href="{{ url_for('.show_listings') }}" id="header-logo-container">
-          <img class="header-logo" id="header-logo" src="{{ url_for('static', filename='images/logo.png') }}" />
-        </a>
-        <div class="navbar-left" id="header-searchbar">
-          <input type="text" class="form-control" placeholder="Title or ISBN">
+        <div class="container-fluid">
+        <div class="navbar-header">
+          <button aria-expanded="false" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" type="button">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{{ url_for('.show_listings') }}" id="header-brand">
+            <img id="header-logo" src="{{ url_for('static', filename='images/logo.png') }}" />
+          </a>
         </div>
-        <div class="navbar-left" id="header-searchbutton">
-          <button type="submit" class="btn btn-default">Search</button>
+        <form action="" class="navbar-form navbar-left" method="GET" role="search">
+          <div class="form-group">
+            <input class="form-control" name="q" placeholder="Title or ISBN" type="text" />
+          </div>
+          <button class="btn btn-default" type="submit">Search</button>
+        </form>
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            {%- if user is defined %}
+            <li class="dropdown">
+              <a aria-haspopup="true" aria-expanded="false" class="dropdown-toggle" data-toggle="dropdown" href="#" role="button">
+                {{ user.name }} <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Edit Profile</a></li>
+                <li><a href="#">My Postings</a></li>
+                <li><a href="#">Messages</a></li>
+                <li class="divider" role="separator"></li>
+                <li><a href="#">Logout</a></li>
+              </ul>
+            </li>
+            {%- else %}
+            <li><a href="#">Login</a></li>
+            {%- endif %}
+          </ul>
         </div>
-        <div class="navbar-right" id="header-user">
-          {%- if user is defined %}
-            Hello, {{ user.name }}
-          {%- else %}
-            Login
-          {%- endif %}
         </div>
       </nav>
       {% block body %}{% endblock %}
