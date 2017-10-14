@@ -16,12 +16,13 @@
     };
 
     function Init(){
-        var json = getJSON('/api/v1/listings')
-        var html ='';
-        for (i in json){
-            html += AddListing(json[i].img, json[i].price, json[i].title, json[i].posting_id)
-        }
-        $('#divListing').html();
+        getJSON("/listings", function (json) {
+            var html ='';
+            for (i in json){
+                html += AddListing(json[i].img, json[i].price, json[i].title, json[i].posting_id)
+            }
+            $('#divListing').html();
+        });
     }
 
     function AddListing (img, price, title, posting_id){

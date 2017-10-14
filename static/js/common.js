@@ -1,9 +1,10 @@
-function getJSON (url){
+function getJSON (url, callback){
     $.ajax({
         type: "GET",
-        url:'/api/v1/listings',
-        success: function (data, status, jqXHR) {
-            return data;
+        url:url,
+        success: function (data) {
+            json = JSON.parse(data);
+            callback(json);
         }
     });
 }
@@ -17,3 +18,4 @@ function postJSON (url, data){
         dataType: json
     });
 }
+
