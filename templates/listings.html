@@ -1,0 +1,101 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="row">
+  <div class="col-sm-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">Filter</div>
+      <div class="panel-body">
+        <form>
+          <div class="form-group">
+            <label for="price">Price</label>
+	    <div class="row">
+              <div class="col-xs-6">
+                <input class="form-control" id="minPrice" name="minPrice" placeholder="min" type="number" />
+              </div>
+              <div class="col-xs-6">
+                <input class="form-control" id="maxPrice" name="maxPrice" placeholder="max" type="number" />
+              </div>
+	    </div>
+          </div>
+          <div class="form-group">
+            <label for="school">School</label>
+            <select class="form-control" id="school" name="school">
+              <option value="">Any</option>
+              {%- if filterOptions is defined %}
+                {{ filterOptions.schools }}
+              {% endif %}
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="author">Author</label>
+            <input class="form-control" id="author" name="author" type="text" />
+          </div>
+          <div class="form-group">
+            <label for="condition">Condition</label>
+            <select class="form-control" id="condition" name="condition">
+              <option value="new">New only</option>
+              <option value="likenew">Like new or better</option>
+              <option value="good">Good or better</option>
+              <option value="fair">Fair or better</option>
+              <option value="poor">Poor or better</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="cover">Cover</label>
+            <select class="form-control" id="cover" name="cover">
+              <option value="">Any</option>
+              <option value="hard">Hardcover</option>
+              <option value="soft">Softcover</option>
+              <option value="loose">Loose leaf</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="zip">ZIP Code</label>
+            <input class="form-control" id="zip" name="zip" type="number" />
+          </div>
+          <div class="form-group">
+            <label for="edition">Edition</label>
+            <input class="form-control" id="edition" name="edition" type="text" />
+          </div>
+          <div class="checkbox">
+            <label>
+              <input id="hasImage" name="hasImage" type="checkbox" /> Has image
+            </label>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div id="divListing" class="col-sm-9">
+  </div>
+</div>
+{% endblock %}
+{% block script %}
+<script>
+    window.onload = function() {
+        Init();
+    };
+
+    function Init(){
+        getJSON('/api/v1/listings', function (json) {
+            var html ='';
+            for (i in json){
+                html += AddListing(json[i].img, json[i].price, json[i].title, json[i].posting_id)
+            }
+            $('#divListing').html();
+        });
+    }
+
+    function AddListing (img, price, title, posting_id){
+        var html ='';
+        html += '<div class=row>'
+        html +=    '<div class=col-xs-12>'
+        //html += add pic
+        //html += add price
+        //html += add title
+        html +=    '</div>'
+        html += '</div>'
+        return html;
+    }
+</script>
+{% endblock %}

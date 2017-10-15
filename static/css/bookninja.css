@@ -1,0 +1,11 @@
+body {
+  margin-top: 1em;
+}
+
+#header-brand {
+  padding: 0.5em;
+}
+
+#header-logo {
+  height: 100%;
+}
