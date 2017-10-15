@@ -6,7 +6,7 @@
         <label id="lbPrice"></label>
     </div>
     <div class="col-sm-3">
-        <button class="danger">Message Seller</button>
+      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalCompose">Message Seller</button>
     </div>
 </div>
 <div class="row">
@@ -28,4 +28,5 @@
 <div class="row">
     <div id="divDescription" class="col-sm-12"></div>
 </div>
+{% include 'fragment/compose.html' %}
 {% endblock %}

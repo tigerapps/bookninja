@@ -1,4 +1,38 @@
-{% extends "modal.html" %}
-{% block body %}
-<!-- Your HTML here -->
-{% endblock %}
+<div class="modal fade" id="modalCompose" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-10">
+              <h4>Message Seller</h4>
+            </div>
+            <div class="col-md-2" style="padding: 0.5em 0.5em">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="to">To</label>
+            <input class="form-control" id="tbTo" name="tbTo" readonly />
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input class="form-control" id="tbSubject" name="tbSubject" />
+          </div>
+          <div class="form-group">
+            <label for="message"></label>
+            <textarea class="form-control" rows="10" id="taMessage" name="taMessage" /></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send</button>
+      </div>
+    </div>
+  </div>
+</div>
