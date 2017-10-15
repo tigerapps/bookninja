@@ -1,4 +1,35 @@
-{% extends "modal.html" %}
-{% block body %}
-<!-- Your HTML here -->
-{% endblock %}
+<div class="modal fade" id="modalLogin" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-10">
+              <h4>Login</h4>
+            </div>
+            <div class="col-md-2" style="padding: 0.5em 0.5em">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-inline">
+            <div class="form-group">
+              <label for="user">Username</label>
+              <input type="text" class="form-control" id="tbUsername" name="tbUsername" />
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" id="tbPassword" name="tbPassword" />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary">Login</button>
+      </div>
+    </div>
+  </div>
+</div>
